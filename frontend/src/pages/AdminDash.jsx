@@ -9,6 +9,7 @@ import ProfileModal from '../components/ProfileModal';
 import { useNavigate } from 'react-router-dom';
 import AdminSubmissionsReview from '../components/AdminSubmissionsReview'; // adjust path if needed
 import axios from 'axios';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 const AdminDashboard = () => {
@@ -58,7 +59,7 @@ const AdminDashboard = () => {
                  <button
   onClick={async () => {
     try {
-      await axios.get('http://localhost:4000/api/admin/logout',{ withCredentials: true });
+      await axios.get(`${API_BASE_URL}/admin/logout`,{ withCredentials: true });
       navigate('/'); // Redirect to login page after logout
     } catch (err) {
       alert('Logout failed');
