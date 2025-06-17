@@ -27,7 +27,7 @@ router.post('/register', async (req, res) => {
 });
 
 
-router.post('/login',async (req, res) => {
+router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -43,16 +43,23 @@ router.post('/login',async (req, res) => {
 
     const token = generateToken(admin);
 
-    res.cookie('token', token);
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: true,          // required for SameSite=None
+      sameSite: 'None',      // allow cross-site cookie
+      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+    });
 
     res.status(200).json({ message: 'Login successful' });
+
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: 'Server error', error });
   }
 });
 
 // GET PROFILE
-router.get('/profile',verifyToken ,async (req, res) => {
+router.get('/profile',verifyToken,async (req, res) => {
   const { email } = req.admin;
   res.json({ email });
 });
@@ -76,9 +83,14 @@ router.put('/profile',verifyToken ,async (req, res) => {
 
 // Logout route
 router.get('/logout', (req, res) => {
-  res.cookie('token', "");
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: true,       // match cookie settings used in login
+    sameSite: 'None'    // match cookie settings used in login
+  });
   return res.status(200).json({ message: 'Logged out successfully' });
 });
+
 
 
 
