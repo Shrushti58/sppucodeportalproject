@@ -10,6 +10,7 @@ import HowItWorksSection from '../components/HowItWorksSection';
 import { Element } from 'react-scroll/modules';
 import Footer from '../components/Footer';
 import SubjectsBySemester from '../components/SubjectsBySemester';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 const LandingPage = () => {
@@ -20,7 +21,7 @@ const LandingPage = () => {
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
-        const res = await axios.get('http://localhost:4000/api/subjects');
+        const res = await axios.get(`${API_BASE_URL}/api/subjects`);
         setSubjects(res.data);
       } catch (err) {
         console.error('Failed to fetch subjects:', err.message);
