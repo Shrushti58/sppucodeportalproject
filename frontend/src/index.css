@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+/* Glass Effects */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.glass-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.glass-button-primary {
+  background: rgba(59, 130, 246, 0.5);
+  border: 1px solid rgba(99, 179, 237, 0.3);
+}
+
+.glass-button-primary:hover {
+  background: rgba(59, 130, 246, 0.7);
+}
+
+.glass-mobile-menu {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Animation */
+@keyframes gradient-border {
+  0% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.5; }
+}
+
+.animate-gradient-border {
+  animation: gradient-border 3s ease infinite;
+}
