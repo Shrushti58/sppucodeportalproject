@@ -21,7 +21,7 @@ const LandingPage = () => {
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
-        const res = await axios.get(`${API_BASE_URL}/api/subjects`);
+        const res = await axios.get(`${API_BASE_URL}/subjects`);
         setSubjects(res.data);
       } catch (err) {
         console.error('Failed to fetch subjects:', err.message);
